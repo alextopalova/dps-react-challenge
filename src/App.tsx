@@ -28,7 +28,13 @@ function App() {
 		queryKey: ['localityValue', localityValue],
 		queryFn: () => getPostalCodesByLocality(localityValue),
 		enabled: isLocalityMode && localityValue.trim().length > 1,
-		select: (data) => [...new Set(data.map(item => item.postalCode))],
+		// Shows post codes only for exact name matches, e.g. if searching for Ulm, Obersulm would be filtered out
+		select: (data) =>
+			[...new Set(
+				data
+					.filter(item => item.name === localityValue)
+					.map(item => item.postalCode)
+			)],
 		retry: false
 	});
 
