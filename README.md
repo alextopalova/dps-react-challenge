@@ -1,4 +1,4 @@
-# DPS Frontend Coding Challenge: German Address Validator #
+# DPS Frontend Coding Challenge: German Address Validator
 
 Your task is to build a small web application that validates German postal codes (PLZ) and localities using the **Open PLZ API**.
 API reference: https://www.openplzapi.org/en/germany.
@@ -23,15 +23,20 @@ The application will then be accessible at http://localhost:3000.
 ## Project Description
 
 Create an address input form with two required fields.
+
 - **Locality** (city/town name)
 - **Postal Code (PLZ)**
-These fields must validate each other using live data from the Open PLZ API.
+  These fields must validate each other using live data from the Open PLZ API.
 
 **Usage scenarios.**
+
 1. Lookup by locality. When the user types a city/town name:
+
 - If one postal code exists for this locality → automatically fill the PLZ field.
 - If multiple postal codes exist → convert the PLZ field into a dropdown.
+
 2. Lookup by postal code. When the user enters a PLZ:
+
 - If PLZ is valid → automatically fill the locality field.
 - If PLZ is invalid → show an error message.
 
@@ -41,6 +46,7 @@ These fields must validate each other using live data from the Open PLZ API.
 
 You are allowed to use AI tools to complete this task. However, **transparency is required**.
 Please include a small artifact folder or a markdown section with:
+
 - Links to ChatGPT / Claude / Copilot conversations
 - Any prompts used (copy/paste the prompt text if links are private)
 - Notes about what parts were AI-assisted
