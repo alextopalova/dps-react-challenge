@@ -15,7 +15,7 @@ const LookupModeButton = ({
 	return (
 		<Field>
 			<FieldLabel htmlFor="lookupMode">
-				Choose which attribute to look up by:
+				Select the attribute you want to search by:
 			</FieldLabel>
 			<RadioGroup value={lookupMode} onValueChange={handleChange}>
 				<div className="flex items-center space-x-2">

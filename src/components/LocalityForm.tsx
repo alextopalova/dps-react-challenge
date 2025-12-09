@@ -122,7 +122,7 @@ const LocalityForm = () => {
 
 	return (
 		<div className="min-h-screen flex flex-col items-center justify-center">
-			<h1 className="text-4xl font-bold">Locality Lookup Form</h1>
+			<h1 className="text-4xl font-bold">German Address Validator</h1>
 			<FieldSet className="flex flex-col w-full max-w-md p-8">
 				<LookupModeButton
 					lookupMode={lookupMode}

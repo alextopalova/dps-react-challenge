@@ -76,7 +76,7 @@ const PostalCode = ({
 				/>
 				<FieldDescription>
 					{disabled
-						? 'The postal code corresponding to the city/town'
+						? 'This postal code corresponds to given city/town'
 						: 'Type the postal code (PLZ)'}
 				</FieldDescription>
 			</Field>

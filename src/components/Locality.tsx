@@ -25,7 +25,7 @@ const Locality = ({
 	return (
 		<div className="w-full max-w-md">
 			<Field>
-				<FieldLabel htmlFor="locality">City/Town name</FieldLabel>
+				<FieldLabel htmlFor="locality">City/Town name (in German) </FieldLabel>
 				<Input
 					id="locality"
 					type="text"
@@ -36,7 +36,7 @@ const Locality = ({
 				/>
 				<FieldDescription>
 					{disabled
-						? 'The postal code corresponds to this city/town'
+						? 'This city/town corresponds to given postal code'
 						: 'Type the name of a city/town'}
 				</FieldDescription>
 			</Field>
