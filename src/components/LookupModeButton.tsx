@@ -19,7 +19,10 @@ const LookupModeButton = ({
 			</FieldLabel>
 			<RadioGroup value={lookupMode} onValueChange={handleChange}>
 				<div className="flex items-center space-x-2">
-					<RadioGroupItem value={LookupMode.Locality} id="localityMode" />
+					<RadioGroupItem
+						value={LookupMode.Locality}
+						id="localityMode"
+					/>
 					<Label htmlFor="localityMode">Locality</Label>
 				</div>
 				<div className="flex items-center space-x-2">

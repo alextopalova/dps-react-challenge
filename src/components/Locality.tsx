@@ -10,8 +10,12 @@ interface LocalityProps {
 	disabled: boolean;
 }
 
-const Locality = ({ localityValue, handleChange, error, disabled}: LocalityProps) => {
-
+const Locality = ({
+	localityValue,
+	handleChange,
+	error,
+	disabled,
+}: LocalityProps) => {
 	useEffect(() => {
 		if (error) {
 			showErrorToast(error);
@@ -31,7 +35,9 @@ const Locality = ({ localityValue, handleChange, error, disabled}: LocalityProps
 					disabled={disabled}
 				/>
 				<FieldDescription>
-					{disabled ? "The postal code corresponds to this city/town" : "Type the name of a city/town"}
+					{disabled
+						? 'The postal code corresponds to this city/town'
+						: 'Type the name of a city/town'}
 				</FieldDescription>
 			</Field>
 		</div>

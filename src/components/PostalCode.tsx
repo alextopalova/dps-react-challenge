@@ -25,7 +25,6 @@ const PostalCode = ({
 	error,
 	disabled,
 }: PostalCodeProps) => {
-
 	useEffect(() => {
 		if (error) {
 			showErrorToast(error);
@@ -48,10 +47,7 @@ const PostalCode = ({
 						</SelectTrigger>
 						<SelectContent>
 							{postalCodeOptions.map((postalCode, index) => (
-								<SelectItem
-									key={index}
-									value={postalCode}
-								>
+								<SelectItem key={index} value={postalCode}>
 									{postalCode}
 								</SelectItem>
 							))}
@@ -78,7 +74,11 @@ const PostalCode = ({
 					maxLength={5}
 					disabled={disabled}
 				/>
-				<FieldDescription>{disabled ? 'The postal code corresponding to the city/town' : 'Type the postal code (PLZ)'}</FieldDescription>
+				<FieldDescription>
+					{disabled
+						? 'The postal code corresponding to the city/town'
+						: 'Type the postal code (PLZ)'}
+				</FieldDescription>
 			</Field>
 		</div>
 	);
