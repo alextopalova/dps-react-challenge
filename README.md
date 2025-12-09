@@ -1,57 +1,119 @@
 # DPS Frontend Coding Challenge: German Address Validator
 
-Your task is to build a small web application that validates German postal codes (PLZ) and localities using the **Open PLZ API**.
-API reference: https://www.openplzapi.org/en/germany.
+### By Aleksandra Topalova
 
-## Project Setup
+A small **React + Vite** application that validates German postal codes (PLZ) and localities using the **Open PLZ API**.
+The application supports two lookup modes, dynamic field behavior, validation and a minimal UI using `TailwindCSS +
+shadcn/ui`.
 
-This repository comes **pre-configured with React and Vite**. You are free to use additional tools or libraries.
-You may either fork this repository or create a new one and restructure the application as you see fit.
+## 🚀 Project Overview
 
-## Environment Setup
+This project implements a two-way validation system for German addresses:
 
-Ensure you have Node.js (v14.x or later) and npm (v6.x or later) installed.  
-To set up and run the application, execute the following commands:
+* Users can enter either a locality (city/town) or a postal code (PLZ)
+* The application validates one field using the other by calling the Open PLZ API
+* The UX dynamically adjusts:
+    * Auto-filling the matching field
+    * Showing errors
+    * Switching the PLZ field to a dropdown if multiple results exist
 
-```
+This includes debouncing, error handling and lookup mode switching.
+
+## 🧠 How the App Works
+
+### 1. Two Lookup Modes
+
+The user can select:
+
+- **Lookup by Locality** → validate + fetch postal codes
+- **Lookup by PLZ** → validate + fetch localities
+
+A custom `LookupModeButton` switches between the two for a better user experience.
+
+---
+
+### 2. Locality → Postal Code Logic
+
+When the user types a locality:
+
+* After 1 second debounce, a request is sent to the API
+* Possible outcomes:
+  * **Exactly one postal code found** → auto-fill PLZ
+  * **Multiple postal codes found** → show a dropdown
+  * **No match** → display an error
+
+---
+
+### 3. Postal Code → Locality Logic
+
+When the user enters a 5-digit postal code:
+
+* Request is triggered immediately after the postal code is complete
+* Possible outcomes:
+  * **Valid PLZ** → locality auto-fills
+  * **Invalid PLZ** → show error message
+
+Invalid codes are detected both through the API response and the query error state.
+
+## 🛠 Technical Decisions
+
+### React Query
+* Makes stable network requests
+* Automatically caches city/PLZ lookups
+* Error handling
+* Avoids duplicate fetches
+
+### TailwindCSS + shadcn/ui
+* Provide uniformly styled form inputs, fieldsets, labels and dropdowns
+* Auto-generated the components in folder `components/ui` (which were later manually adapted)
+
+### Toaster
+
+* Displays form feedback and validation messages
+
+### Debouncing
+
+* Implemented manually via `setTimeout` + cleanup inside `useEffect`
+
+## 📁 Project Setup
+
+Install dependencies:
+
+```bash
 npm install
+```
+
+Start development server:
+
+```bash
 npm run dev
 ```
 
-The application will then be accessible at http://localhost:3000.
+The app runs at:
+http://localhost:3000
 
-## Project Description
+## 🤖 AI Assistance Transparency
 
-Create an address input form with two required fields.
+Per the project requirements, below is a description of the AI assistance usage.
 
-- **Locality** (city/town name)
-- **Postal Code (PLZ)**
-  These fields must validate each other using live data from the Open PLZ API.
+### Manually Implemented Parts
 
-**Usage scenarios.**
+* All business logic:
+  * Field state management
+  * Lookup mode logic
+  * Debouncing
+* React Query integration
+* UI layout and component composition
+* Error handling
 
-1. Lookup by locality. When the user types a city/town name:
+### Tools Used
+* ChatGPT (model: GPT-5.1)
+* Claude 4.5 Sonnet
 
-- If one postal code exists for this locality → automatically fill the PLZ field.
-- If multiple postal codes exist → convert the PLZ field into a dropdown.
+### AI-Assisted Tasks
+* Tailwind theme and colors + shadcn/ui and Tailwind/UI guidance
+* Crafting better text labels (“Select the attribute...” etc.)
+* Improving README structure and phrasing
+* Debugging layout overflow + flexbox issues
 
-2. Lookup by postal code. When the user enters a PLZ:
-
-- If PLZ is valid → automatically fill the locality field.
-- If PLZ is invalid → show an error message.
-
-[Optional task] **Debounce**. Implement a 1-second debounce on both inputs before API calls.
-
-## AI Usage Rules
-
-You are allowed to use AI tools to complete this task. However, **transparency is required**.
-Please include a small artifact folder or a markdown section with:
-
-- Links to ChatGPT / Claude / Copilot conversations
-- Any prompts used (copy/paste the prompt text if links are private)
-- Notes about what parts were AI-assisted
-- Any generated code snippets you modified or rejected
-
-This helps us understand your workflow and decision-making process, not to judge AI usage.
-
-Happy coding!
+→ AI suggestions were selectively applied and adjusted where necessary
