@@ -92,13 +92,8 @@ const LocalityForm = () => {
 			if (postalQuery.data && postalQuery.data.length > 0) {
 				setLocalityValue(postalQuery.data[0]);
 				setPostalError('');
-			} else if (postalQuery.isError && postalCodeValue.length === 5) {
-				setPostalError('Invalid postal code');
-			} else if (
-				postalQuery.data &&
-				postalQuery.data.length === 0 &&
-				postalCodeValue.length === 5
-			) {
+			} else if (postalQuery.data && (postalQuery.isError || postalQuery.data.length === 0)&& postalCodeValue.length === 5) {
+				setPostalError('');
 				setPostalError('Invalid postal code');
 			} else if (postalCodeValue.length < 5) {
 				setLocalityValue('');
