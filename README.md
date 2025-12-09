@@ -25,8 +25,8 @@ This includes debouncing, error handling and lookup mode switching.
 
 The user can select:
 
-- **Lookup by Locality** → validate + fetch postal codes
-- **Lookup by PLZ** → validate + fetch localities
+* **Lookup by Locality** → validate + fetch postal codes
+* **Lookup by PLZ** → validate + fetch localities
 
 A custom `LookupModeButton` switches between the two for a better user experience.
 
